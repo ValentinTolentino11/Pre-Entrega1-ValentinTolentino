@@ -30,6 +30,7 @@ const productos = [
   const productoElegido = new Productos(producto,precio,unidad);
   arrayCarrito.push(productoElegido);
   alert("Se ha cargado un producto a su carrito");
+  return menu();
  }
 
 function verCarrito() {
@@ -37,10 +38,14 @@ function verCarrito() {
     alert(`Producto: ${articulo.producto}, Precio: ${articulo.precio}`);  
   });
 }
-function finalizarCompra(){
-const total = arrayCarrito.reduce((acc, el) => acc + el.precio * el.unidades, 0)
+verCarrito();
+
+function finalizarCompra() {
+const total = arrayCarrito.reduce((acc, el) => acc + el.precio * el.unidad, 0)
 console.log(`El total a pagar por su compra es: ${total}`)
 }
+
+finalizarCompra();
 
 let envioGratis = productos.filter((producto) => {
 	if (producto.precio >= 4000) {
@@ -101,7 +106,8 @@ while (eleccion !== "5") {
     break
   };}
 
-menu()
+agregarArticulos();
+menu();
 
 function menu () {
   let opcionMenu = prompt (` \n 1: Volver al menu inicial \n 2: Salir `)
